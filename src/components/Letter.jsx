@@ -159,28 +159,33 @@ export default function Letter() {
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
-              padding: '20px 30px',
+              padding: 'clamp(10px, 3vw, 20px) clamp(15px, 4vw, 30px)',
               backgroundColor: 'rgba(0,0,0,0.03)'
             }}>
               <button
                 onClick={prevSlide}
                 disabled={currentSlide === 1}
                 style={{
-                  padding: '10px 20px',
+                  padding: 'clamp(8px, 2vw, 10px) clamp(12px, 3vw, 20px)',
                   backgroundColor: currentSlide === 1 ? 'transparent' : 'rgba(0,0,0,0.1)',
                   color: currentSlide === 1 ? 'transparent' : '#333',
                   border: 'none',
                   borderRadius: '20px',
                   cursor: currentSlide === 1 ? 'default' : 'pointer',
                   fontFamily: 'var(--font-serif)',
-                  fontSize: '1.1rem',
+                  fontSize: 'clamp(0.9rem, 2.5vw, 1.1rem)',
                   transition: 'all 0.3s'
                 }}
               >
-                ← Previous
+                ← Prev
               </button>
               
-              <span style={{ fontFamily: 'var(--font-serif)', color: '#666' }}>
+              <span style={{ 
+                fontFamily: 'var(--font-serif)', 
+                color: '#666',
+                whiteSpace: 'nowrap',
+                fontSize: 'clamp(0.9rem, 2.5vw, 1.1rem)'
+              }}>
                 {currentSlide} / 9
               </span>
 
@@ -188,14 +193,14 @@ export default function Letter() {
                 onClick={nextSlide}
                 disabled={currentSlide === 9}
                 style={{
-                  padding: '10px 20px',
+                  padding: 'clamp(8px, 2vw, 10px) clamp(12px, 3vw, 20px)',
                   backgroundColor: currentSlide === 9 ? 'transparent' : 'rgba(0,0,0,0.1)',
                   color: currentSlide === 9 ? 'transparent' : '#333',
                   border: 'none',
                   borderRadius: '20px',
                   cursor: currentSlide === 9 ? 'default' : 'pointer',
                   fontFamily: 'var(--font-serif)',
-                  fontSize: '1.1rem',
+                  fontSize: 'clamp(0.9rem, 2.5vw, 1.1rem)',
                   transition: 'all 0.3s'
                 }}
               >

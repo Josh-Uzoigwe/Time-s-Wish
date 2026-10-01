@@ -152,9 +152,10 @@ export default function Hero({ unwrappedColor, onUnwrap }) {
               transition={{ duration: 1.2, ease: "easeOut" }}
               style={{
                 backgroundColor: unwrappedColor,
-                padding: '40px 60px',
+                padding: 'clamp(20px, 5vw, 40px) clamp(20px, 8vw, 60px)',
                 textAlign: 'center',
                 maxWidth: '800px',
+                width: '90%',
                 boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
                 display: 'inline-block'
               }}
@@ -162,7 +163,7 @@ export default function Hero({ unwrappedColor, onUnwrap }) {
               <h1 
                 style={{ 
                   fontFamily: '"Caveat", cursive', 
-                  fontSize: '4.5rem', 
+                  fontSize: 'clamp(2.8rem, 12vw, 4.5rem)', 
                   marginBottom: '16px', 
                   color: getTextColor(unwrappedColor),
                   lineHeight: '1.2'
@@ -173,7 +174,7 @@ export default function Hero({ unwrappedColor, onUnwrap }) {
               <p
                 style={{ 
                   fontFamily: '"Caveat", cursive', 
-                  fontSize: '2rem', 
+                  fontSize: 'clamp(1.5rem, 6vw, 2rem)', 
                   color: getTextColor(unwrappedColor),
                   opacity: 0.9
                 }}
