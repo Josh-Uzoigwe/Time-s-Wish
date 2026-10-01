@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import Background from './components/Background';
 import Hero from './components/Hero';
+import VideoMessage from './components/VideoMessage';
 import Playlist from './components/Playlist';
 import Memories from './components/Memories';
 import Jokes from './components/Jokes';
@@ -28,6 +29,7 @@ function App() {
             {/* <Playlist /> */}
             {/* <Memories /> */}
             {/* <Jokes /> */}
+            <VideoMessage />
             <Letter />
           </motion.div>
         )}

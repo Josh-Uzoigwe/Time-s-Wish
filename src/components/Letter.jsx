@@ -93,6 +93,15 @@ const LetterEnvelope = ({ onOpen }) => {
 
 export default function Letter() {
   const [isOpen, setIsOpen] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(1);
+
+  const nextSlide = () => {
+    if (currentSlide < 9) setCurrentSlide(currentSlide + 1);
+  };
+
+  const prevSlide = () => {
+    if (currentSlide > 1) setCurrentSlide(currentSlide - 1);
+  };
 
   return (
     <section className="section" style={{ paddingBottom: '120px' }}>
@@ -116,64 +125,82 @@ export default function Letter() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.3 }}
-            className="glass-panel"
             style={{
               maxWidth: '800px',
-              width: '90%',
-              padding: '60px 50px',
-              textAlign: 'left',
+              width: '95%',
               margin: '0 auto',
-              backgroundColor: 'rgba(255, 255, 255, 0.05)',
-              border: '1px solid rgba(255, 255, 255, 0.1)'
-            }}
-          >
-            <div style={{
-              fontSize: '1.7rem',
-              lineHeight: '1.6',
-              color: '#fff',
               display: 'flex',
               flexDirection: 'column',
-              gap: '24px',
-              fontFamily: '"Caveat", cursive',
-              letterSpacing: '1px',
-              textShadow: '0 2px 4px rgba(0,0,0,0.2)'
+              boxShadow: '0 20px 50px rgba(0,0,0,0.4)',
+              borderRadius: '8px',
+              overflow: 'hidden',
+              backgroundColor: '#f7ede2'
+            }}
+          >
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={currentSlide}
+                src={`/letter/${currentSlide}.jpg`}
+                alt={`Letter part ${currentSlide}`}
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -50 }}
+                transition={{ duration: 0.4 }}
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                  display: 'block'
+                }}
+              />
+            </AnimatePresence>
+
+            {/* Navigation Controls */}
+            <div style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              padding: '20px 30px',
+              backgroundColor: 'rgba(0,0,0,0.03)'
             }}>
-              <p>Chidaluuuuu,</p>
+              <button
+                onClick={prevSlide}
+                disabled={currentSlide === 1}
+                style={{
+                  padding: '10px 20px',
+                  backgroundColor: currentSlide === 1 ? 'transparent' : 'rgba(0,0,0,0.1)',
+                  color: currentSlide === 1 ? 'transparent' : '#333',
+                  border: 'none',
+                  borderRadius: '20px',
+                  cursor: currentSlide === 1 ? 'default' : 'pointer',
+                  fontFamily: 'var(--font-serif)',
+                  fontSize: '1.1rem',
+                  transition: 'all 0.3s'
+                }}
+              >
+                ← Previous
+              </button>
               
-              <p>You've just clocked another milestone, big 20 and looking it😌. So I'd of course start by wishing you a very happy birthday ml.</p>
-              
-              <p>To be fair, I wasn't sure how to sound in this note, or whether to do it at all. Between your last birthday and now, so much has changed between us. If I was told this is how we'd be when I'd be doing a piece for you this year, I for no believe.</p>
-              
-              <p>But hey, we've still grown through it all, no? And it's you. Who else I wan do birthday writeup for?😂</p>
-              
-              <p>Happy birthday Dalu m😌</p>
-              
-              <p>For the first time in like 4 years, I feel like a passive participant in your life, and I'm not really sure what new fun things you've picked up and got going now, or what challenges you've overcome this past short while.</p>
-              
-              <p>But I know I can always count on the fact you're not where you were at this time last year, that you're growing into that fine woman I've always known that you'd become.</p>
-              
-              <p>It's been strange getting along knowing you'd not always be there rn to anchor me emotionally, and some nights, it gets really quiet around here; and all I'd want at those times is to see your pop up high on my notifications. At this moment that I don't have that, it's helped me appreciate even more, what you mean to me.</p>
-              
-              <p>It's not every time I get to express myself in writing, infact, I barely do anymore these days; but hear me out😂</p>
-              
-              <p>I feel like a finished lad, writing this to someone's babe, but omo, until there's a ring on your finger that's not mine, or you say 'Ogechukwu, stop,' I guess I'll keep writing.</p>
-              
-              <p>Thanks for teaching me what it's like to love and be loved, even without any strings attached (allegedly😂). Thanks for how you handled the moments I got frail emotionally. 4 years since we first spoke yeah?</p>
-              
-              <p>Seeing you go from 16 to 20 has been a real privilege, and I'm so glad I've been able to see you mature so much all round. I promised myself I'd be there for all your major milestones, I hope I'd always be able to.</p>
-              
-              <p>And guess what. I took your advice, as I often do. Tried meeting someone new. We got along well for a bit, and then, not so much. Prolly not the best place to mention, but you might be happy, small, to know that I've not spent all my nights crying it's not us atm.</p>
-              
-              <p>So... As you celebrate today, I pray you continue to glow in God's glory and goodness. I pray your dreams come true, and you don't get to toil so much to achieve your heart's desires. I wish you the very best of age 20 ml. Continue to find favour before your God, your superiors, peers and whomever with which you may interact in this phase, you're Favour afterall.</p>
-              
-              <p>I hope you're genuinely happy, and living the best life the current settings afford.</p>
-              
-              <p>Have a blast baby. Cheering for you all the way.</p>
-              
-              <p style={{ marginTop: '20px', textAlign: 'right', fontSize: '2rem' }}>
-                I love you, and that's never gonna change.<br />
-                — Ogechukwu
-              </p>
+              <span style={{ fontFamily: 'var(--font-serif)', color: '#666' }}>
+                {currentSlide} / 9
+              </span>
+
+              <button
+                onClick={nextSlide}
+                disabled={currentSlide === 9}
+                style={{
+                  padding: '10px 20px',
+                  backgroundColor: currentSlide === 9 ? 'transparent' : 'rgba(0,0,0,0.1)',
+                  color: currentSlide === 9 ? 'transparent' : '#333',
+                  border: 'none',
+                  borderRadius: '20px',
+                  cursor: currentSlide === 9 ? 'default' : 'pointer',
+                  fontFamily: 'var(--font-serif)',
+                  fontSize: '1.1rem',
+                  transition: 'all 0.3s'
+                }}
+              >
+                Next →
+              </button>
             </div>
           </motion.div>
         )}

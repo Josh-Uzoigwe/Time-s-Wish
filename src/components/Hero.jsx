@@ -107,16 +107,17 @@ export default function Hero({ unwrappedColor, onUnwrap }) {
             exit={{ opacity: 0, filter: 'blur(20px)', y: -30 }}
             transition={{ duration: 1, ease: 'easeOut' }}
             style={{
-              width: '300px',
-              height: '350px',
+              width: '100%',
+              height: '100%',
               cursor: 'pointer',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              justifyContent: 'center'
+              justifyContent: 'center',
+              position: 'relative' // relative context for absolute ribbons
             }}
           >
-            <div style={{ width: '300px', height: '300px' }}>
+            <div style={{ width: '300px', height: '300px', zIndex: 10 }}>
               <Canvas
                 camera={{ position: [0, 0, 4], fov: 50 }}
                 gl={{ alpha: true }}
